@@ -1,0 +1,389 @@
+Question 1 : Binary Array Sorting :
+Given a binary array A[] of size N. The task is to arrange the array in increasing order.
+Note: The binary array contains only 0  and 1.
+ 
+
+Example 1:
+
+Input: 
+5
+1 0 1 1 0
+
+Output: 
+0 0 1 1 1
+
+Explanation: 
+After arranging the elements in 
+increasing order, elements will be as 0 0 1 1 1.
+Example 2:
+
+Input:
+10
+1 0 1 1 1 1 1 0 0 0
+
+Output: 
+0 0 0 0 1 1 1 1 1 1
+
+Explanation: 
+After arranging the elements in 
+increasing orde, elements will be 
+0 0 0 0 1 1 1 1 1 1.
+
+solution 1 :
+
+void binSort(int arr[], int n)
+{
+int l = -1;
+for(int i = 0; i < n; i++)
+{
+if(arr[i] == 0)
+{
+l++;
+swap(arr[l], arr[i]);
+}
+}
+}
+
+Solution 2 :
+void binSort(int arr[], int N)
+{
+   int l=0,h=N-1;
+   
+   while(l<h)
+   {
+       if(arr[l]==0)
+       l++;
+       if(arr[h]==1)
+       h--;
+      else if(arr[l]==1&&arr[h]==0)
+       swap(arr[l++],arr[h--]);
+       
+   }
+   
+
+ 2. Minimum number to form the sum even :
+
+Given an array arr[] of size N, the task is to add the minimum number(should be greater than 0) to the array so that the sum of the array becomes even
+
+ 
+
+Example 1:
+
+Input: N = 8
+arr[] = {1, 2, 3, 4, 5, 6, 7, 8}
+Output:  2
+Explanation:  Sum of array is 36, so 
+we add minimum number 2 to make the 
+sum even.
+
+Example 2:
+
+Input: N = 9
+arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9}
+Output:  1
+
+class Solution{
+
+
+	public:
+	int minNum(long long int a[],int n)
+	{
+	    int sum =0;
+	    int x= accumulate(a, a+n, sum);  
+	    if(x%2==0)
+	    return 2;
+	    else 
+	    return 1;
+	}
+};
+	
+
+Question 3: Maximum value in a bitonic array 
+Easy Accuracy: 56.19% Submissions: 3880 Points: 2
+Given an array Arr of N elements which is first increasing and then may be decreasing, find the maximum element in the array.
+Note: If the array is increasing then just print then last element will be the maximum value.
+
+Example 1:
+
+Input: 
+N = 9
+Arr[] = {1,15,25,45,42,21,17,12,11}
+Output: 45
+Explanation: Maximum element is 45.
+Example 2:
+
+Input: 
+N = 5
+Arr[] = {1, 45, 47, 50, 5}
+Output: 50
+Explanation: Maximum element is 50.
+
+Solution : 
+
+int l=0;
+	 int  r=n-1;
+	  int mid = (l + r)/2;
+	  while(l<=r)
+	  {
+	      int mid = (l + r)/2;
+	      if(arr[mid-1]<arr[mid]&&arr[mid]>arr[mid+1])
+	      return arr[mid];
+	      else if(arr[mid-1]>arr[mid])
+	      r=mid-1;
+	      else if(arr[mid]<arr[mid+1])
+	      l= mid+1;
+	  }
+	}
+};
+Both iterative and recursive solutions (Given Below):
+https://uploads.disquscdn.com/images/ba50a242414a24fca8cdd72638117f1487c55e43cbbfde7f00a0f33c0f3587f6.png
+https://uploads.disquscdn.com/images/86e7b0b6b912daa6144c3e13c48fb422b1adc95ef510a3792d51d1c43527cdd1.png
+
+Question 4 : Fighting the darkness 
+Find the maximum value of the array (maximum number of days for which the room can be illuminated ) 
+Question and solution Link : https://practice.geeksforgeeks.org/problems/fighting-the-darkness3949/1/?category[]=Arrays&page=1&query=category[]Arrayspage1# .
+
+Question 5 : (Array Rearrangement , Medium : Points-4)IMP.
+
+Rearrange an array with O(1) extra space 
+Medium Accuracy: 59.81% Submissions: 9818 Points: 4
+Given an array arr[] of size N where every element is in the range from 0 to n-1. Rearrange the given array so that arr[i] becomes arr[arr[i]].
+
+Example 1:
+
+Input:
+N = 2
+arr[] = {1,0}
+Output: 0 1
+Explanation: arr[0] = 1 and arr[arr[0]]
+= 0.Also, arr[1] = 0 and arr[arr[1]] = 1.
+So, rearranging elements, we get array 
+as, 0 1.
+Example 2:
+
+Input:
+N = 5
+arr[] = {4,0,2,1,3}
+Output: 3 4 2 0 1
+Explanation: arr[0] = 4 and arr[arr[0]] 
+= 3. Also, arr[1] = 0 and arr[arr[1]] 
+= 4 and so on. So, rearranging elements,
+we get array as 3 4 2 0 1.
+
+Solution : 
+
+void arrange(long long arr[], int n) {
+    
+    for(int i=0;i<n;i++)
+    {
+        arr[i]+=(arr[arr[i]]%n)*n;
+    }
+    
+    for(int i=0;i<n;i++)
+    {
+      arr[i]=arr[i]/n;
+    }
+
+}
+
+
+Question 6 :
+
+Merge Without Extra Space 
+Hard Accuracy: 41.69% Submissions: 10026 Points: 8
+Given two sorted arrays arr1[] and arr2[] in non-decreasing order with size n and m. The task is to merge the two sorted arrays in place, i. e., we need to consider all n + m elements in sorted order, then we need to put first n elements of these sorted in first array and remaining m elements in second array.
+
+Note: Expected time complexity is O((n+m) log(n+m)). DO NOT use extra space.  We need to modify existing arrays as follows.
+
+Example 1:
+
+Input: 
+N = 4, arr1[] = [1 3 5 7] 
+m = 5, arr2[] = [0 2 6 8 9]
+Output: 
+arr1[] = [0 1 2 3]
+arr2[] = [5 6 7 8 9]
+Explanation: After merging the two non-decreasing 
+arrays, we have, 0 1 2 3 5 6 7 8 9.
+Example 2:
+
+Input: 
+N = 2, arr1[] = [10, 12] 
+M = 3, arr2[] = [5 18 20]
+Output: 
+arr1[] = [5 10]
+arr2[] = [12 18 20]
+Explanation: After merging two sorted arrays 
+we have 5 10 12 18 20.
+
+Solution dor the above problem :
+
+void merge(int arr1[], int arr2[], int n, int m) 
+{ 
+   int x=n-1;
+   int l=0;
+   while(x>=0&&l<m)
+   {
+   if(arr1[x]>arr2[l])
+   {
+   swap(arr1[x--],arr2[l++]);
+   }
+   else 
+   {
+       x--;
+   }
+   }
+   sort(arr1,arr1+n);
+   sort(arr2,arr2+m);
+}
+
+Question 7 :
+
+Sort an array of 0s, 1s and 2s 
+Easy Accuracy: 51.36% Submissions: 19947 Points: 2
+Given an array of size N containing 0s, 1s, and 2s; sort the array in ascending order.
+
+Input:
+First line of input contains number of testcases T. For each testcase, there will be two lines, first of which will contain N. The second lines contains the elements of the array.
+
+Output: 
+Print sorted array.
+
+Your Task:
+Complete the function sort012() that takes array and n and sorts the array in place. 
+
+Constraints: 
+1 <= T <= 50
+1 <= N <= 10^5
+0 <= A[i] <= 2
+
+Example:
+Input :
+2
+5
+0 2 1 2 0
+3
+0 1 0
+
+Output:
+0 0 1 2 2
+0 0 1
+
+Solution : 
+
+
+void sort012(int arr[], int n)
+{
+   int low = 0;
+   int mid = 0;
+   int high= n-1;
+   
+    while(mid<=high)
+    {
+        if(arr[mid]==0)
+        {
+            swap(arr[mid],arr[low]);
+            low++;
+            mid++;
+        }
+        else if(arr[mid]==1)
+        {
+            mid++;
+        }
+        else if(arr[mid]==2)
+        {
+            swap(arr[mid], arr[high] );
+            high--;
+        }
+    }
+}
+
+Question 8:
+Find Transition Point 
+Easy Accuracy: 53.15% Submissions: 51736 Points: 2
+You are given a sorted array containing only numbers 0 and 1. Find the transition point efficiently. The transition point is a point where "0" ends and "1" begins (0 based indexing).
+Note that, if there is no "1" exists, print -1.
+Note that, in case of all 1s print 0.
+
+Example 1:
+
+Input:
+N = 5
+C[] = {0,0,0,1,1}
+Output: 3
+Explanation: position 3 is 0 and next
+one is 1, so answer is 3.
+Example 2:
+
+Input:
+N = 4
+C[] = {0,0,0,0}
+Output: -1
+Explanation: Since, there is no "1",so
+the answer is -1.
+Your Task:
+The task is to complete the function transitionPoint() that takes array and N as input and returns the value of the position where "0" ends and "1" begins.
+
+Expected Time Complexity: O(LogN).
+Expected Auxiliary Space: O(1).
+
+Constraints:
+1 ≤ N ≤ 500000
+0 ≤ C[i] ≤ 1
+
+Solution :
+int transitionPoint(int arr[], int n) {
+    
+    int l=0;
+    int r = n-1;
+    int mid;
+     
+    while(l<=r)
+    {    
+        mid = (l + r)/2 ;
+        if(arr[mid]== 0&& arr[mid+1]==1)
+        return (mid+1);
+        else if(arr[mid] ==1&&arr[mid-1]==0)
+        return mid;
+        
+        
+        else if( arr[mid]==1)
+        r = mid-1;
+        else 
+        l= mid + 1; 
+        
+    }
+    return -1;
+    
+    
+}
+
+Mind Boggling Solution : (first ) :
+
+int transitionPoint(int arr[], int n) 
+{
+    int l = 0, h = n-1;
+    
+    while(l <= h)
+    {
+        int mid = l + (h-l)/2;
+        
+        if(arr[mid] == 1 && (mid-1 < 0 || arr[mid-1] == 0))
+        {
+            return mid;
+        }
+        
+        if(arr[mid] == 1)
+        {
+            h = mid-1;
+        }
+        else
+        {
+            l = mid+1;
+        }
+    }
+    
+    return -1;
+}
+Question Link : https://practice.geeksforgeeks.org/problems/find-transition-point-1587115620/1/?category[]=Arrays&page=1&query=category[]Arrayspage1#
+

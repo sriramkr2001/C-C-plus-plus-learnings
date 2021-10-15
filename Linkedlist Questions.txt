@@ -1,0 +1,176 @@
+Question 1: (Linkedlist)
+
+#include<stdio.h>
+#include<conio.h>
+#include<alloc.h>
+
+struct node
+{ 
+ 
+char name[20];
+int roll_no;
+struct node *next;
+};
+
+void append(struct node **,char*,int);
+void display_data(struct node *);
+int count_nodes(struct node *);
+int search_node(struct node *,int);
+ void delete_pos(int pos);
+void display_particular(struct node *,int );
+
+
+void main()
+{
+int i,n,x,e,nosids,roll_no;
+char* name = (char*)malloc(20 * sizeof(char));
+struct node *start=NULL;
+printf("how many elements do u want  to store:");
+scanf("%d",&n);
+
+for(i=1;i<=n;i++)
+  {
+   printf("\n enter the element element to INSERT :");
+   scanf("%d",&x);
+   scanf("%s",name)
+   append(&start,&name,x);
+  
+  }
+   printf("\n Enter how many student id's  u want to delete");
+    scanf("%d",&nosids);
+ for( i =0; i<nosids; i++)
+{
+    printf("\n enter the student's roll number  to search their posisition inside the list:");
+    scanf("%d",&e);
+   if(search_node(start,e)==0)
+  printf("\nlist is empty");
+  else if(search_node(start,e)==-1)
+  printf("\nEntered Wrong element!!");
+  else
+  printf("\nELEMENT INSIDE %d NODE",search_node(start,e));
+  int position = search_node(start,e);
+  delete_pos(e);
+}
+  display_data(start);
+  printf("\n Enter the particular student's roll number whose details u want to be displayed);
+   scanf("%d",&roll_no);
+   display_particular(start,roll_no);
+   printf("\n");
+  
+  
+
+  
+getch();
+}
+void append(struct node **ps,int x,char* name)
+{
+struct node *p,*temp;
+p=(struct node *)malloc(sizeof(struct node));
+p->data=x;
+strcpy(p->name,name);
+p->next=NULL;
+
+ if(*ps==NULL)
+ {
+ *ps=p;
+ return;
+ }
+ temp=*ps;
+ while(temp->next!=NULL)
+ {
+ temp=temp->next;
+ }
+ temp->next=p;
+}
+
+void display_data(struct node *p)
+{
+if(p==NULL)
+printf("\nList is empty");
+ while(p!=NULL)
+ {
+ printf("\n%d",p->data);
+ printf("\n%d,p->name);
+ p=p->next;
+ }
+return;
+}
+
+void display_paricular(struct node *p , int Roll_no)
+{
+if(p==NULL)
+printf("\nList is empty");
+ while(p->data != Roll_no)
+ {
+     p=p->next;
+  }
+ printf("\n%d",p->data);
+ printf("\n%d,p->name);
+
+ }
+return;
+}
+
+
+int count_nodes(struct node *p)
+{
+int x=0;
+if(p==NULL)
+ return 0;
+ while(p!=NULL)
+ {
+ x++;
+ p=p->next;
+ }
+return x;
+}
+
+int search_node(struct node *p,int e)
+{
+int pos=0;
+if(p==NULL)
+return 0;
+while(p!=NULL)
+{
+ pos++;
+if(p->data==e)
+return pos;
+p=p->next;
+}
+return -1;
+}
+
+void delete_pos(int pos)
+{
+        int i,pos;
+        struct node *temp,*ptr;
+        if(start==NULL)
+        {
+                printf("nThe List is Empty:n");
+                exit(0);
+        }
+        else
+        {
+                
+                if(pos==0)
+                {
+                        ptr=start;
+                        start=start->next ;
+                        printf("nThe deleted element is:%dt",ptr->info  );
+                        free(ptr);
+                }
+                else
+                {
+                        ptr=start;
+                        for(i=0;i<pos;i++) { temp=ptr; ptr=ptr->next ;
+                                if(ptr==NULL)
+                                {
+                                        printf("nPosition not Found:n");
+                                        return;
+                                }
+                        }
+                        temp->next =ptr->next ;
+                        printf("nThe deleted element is:%dt",ptr->info );
+                        free(ptr);
+                }
+        }
