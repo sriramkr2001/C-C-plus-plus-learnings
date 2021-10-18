@@ -36,7 +36,7 @@ void Display(Node* t)
 
 while(t!=NULL)
 {
-cout<<t->data<<" "<<t;
+cout<<t->data<<" "<<t<<"Awesome"<<" ";
 cout<<endl;
 t=t->next;
  
